@@ -3,6 +3,7 @@ package com.vsoluciones.controller;
 import com.vsoluciones.dto.DishDTO;
 import com.vsoluciones.model.Dish;
 import com.vsoluciones.service.IDishService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.MediaType;
@@ -44,7 +45,7 @@ public class DishController {
   }
 
   @PostMapping
-  public Mono<ResponseEntity<DishDTO>> save(@RequestBody DishDTO dto, final ServerHttpRequest req) {
+  public Mono<ResponseEntity<DishDTO>> save(@Valid @RequestBody DishDTO dto, final ServerHttpRequest req) {
     return service.save(convertToEntity(dto))
         .map(this::convertToDto)
         .map(x -> ResponseEntity.created(URI.create(req.getURI().toString().concat("/").concat(x.getId())))
@@ -55,7 +56,7 @@ public class DishController {
 
 
   @PutMapping("/{id}")
-  public Mono<ResponseEntity<DishDTO>> update(@RequestBody DishDTO dto, @PathVariable("id") String id) {
+  public Mono<ResponseEntity<DishDTO>> update(@Valid @RequestBody DishDTO dto, @PathVariable("id") String id) {
     return Mono.just(dto)
         .map(x -> {
           x.setId(id);
