@@ -1,10 +1,10 @@
 package com.vsoluciones.controller;
 
 import com.vsoluciones.dto.DishDTO;
-import com.vsoluciones.dto.DishRecord;
 import com.vsoluciones.model.Dish;
 import com.vsoluciones.service.IDishService;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.server.reactive.ServerHttpRequest;
@@ -21,10 +21,12 @@ public class DishController {
 
   private final IDishService service;
 
+  private final ModelMapper mapper;
+
   @GetMapping
-  public Mono<ResponseEntity<Flux<DishRecord>>> findAll() {
-    Flux<DishRecord> fx = service.findAll()
-        .map(e -> new DishRecord(e.getId(),e.getName(), e.getPrice(), e.getStatus()));
+  public Mono<ResponseEntity<Flux<DishDTO>>> findAll() {
+    Flux<DishDTO> fx = service.findAll()
+        .map(e -> mapper.map(e, DishDTO.class));
     return Mono.just(ResponseEntity.ok()
             .contentType(MediaType.APPLICATION_JSON)
             .body(fx))
