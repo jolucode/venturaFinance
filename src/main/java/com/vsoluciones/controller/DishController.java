@@ -1,5 +1,7 @@
 package com.vsoluciones.controller;
 
+import com.vsoluciones.dto.DishDTO;
+import com.vsoluciones.dto.DishRecord;
 import com.vsoluciones.model.Dish;
 import com.vsoluciones.service.IDishService;
 import lombok.RequiredArgsConstructor;
@@ -20,8 +22,9 @@ public class DishController {
   private final IDishService service;
 
   @GetMapping
-  public Mono<ResponseEntity<Flux<Dish>>> findAll() {
-    Flux<Dish> fx = service.findAll();
+  public Mono<ResponseEntity<Flux<DishRecord>>> findAll() {
+    Flux<DishRecord> fx = service.findAll()
+        .map(e -> new DishRecord(e.getId(),e.getName(), e.getPrice(), e.getStatus()));
     return Mono.just(ResponseEntity.ok()
             .contentType(MediaType.APPLICATION_JSON)
             .body(fx))
