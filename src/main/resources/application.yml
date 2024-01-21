@@ -1,0 +1,11 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/ventura2024
+
+server:
+  port: 8111
+
+jjwt:
+  secret: $2a$12$J.ns6dD0ZPenk6cQeh5AhOxsYCuYr00jTs61BqZJX.MfvB8n1ETKa
+  expiration: 2800
