@@ -1,8 +1,8 @@
 package com.vsoluciones.controller;
 
-import com.vsoluciones.dto.DishDTO;
-import com.vsoluciones.model.Dish;
-import com.vsoluciones.service.IDishService;
+import com.vsoluciones.dto.ClientDTO;
+import com.vsoluciones.model.Client;
+import com.vsoluciones.service.IClientService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -17,18 +17,18 @@ import reactor.core.publisher.Mono;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/dishes")
+@RequestMapping("/clients")
 @RequiredArgsConstructor
-public class DishController {
+public class ClientController {
 
-  private final IDishService service;
+  private final IClientService service;
 
-  @Qualifier("defaultMapper")
+  @Qualifier("clientMapper")
   private final ModelMapper mapper;
 
   @GetMapping
-  public Mono<ResponseEntity<Flux<DishDTO>>> findAll() {
-    Flux<DishDTO> fx = service.findAll()
+  public Mono<ResponseEntity<Flux<ClientDTO>>> findAll() {
+    Flux<ClientDTO> fx = service.findAll()
         .map(this::convertToDto);
     return Mono.just(ResponseEntity.ok()
             .contentType(MediaType.APPLICATION_JSON)
@@ -37,7 +37,7 @@ public class DishController {
   }
 
   @GetMapping("/{id}")
-  public Mono<ResponseEntity<DishDTO>> findById(@PathVariable("id") String id) {
+  public Mono<ResponseEntity<ClientDTO>> findById(@PathVariable("id") String id) {
     return service.findById(id)
         .map(this::convertToDto)
         .map(x -> ResponseEntity.ok()
@@ -47,7 +47,7 @@ public class DishController {
   }
 
   @PostMapping
-  public Mono<ResponseEntity<DishDTO>> save(@Valid @RequestBody DishDTO dto, final ServerHttpRequest req) {
+  public Mono<ResponseEntity<ClientDTO>> save(@Valid @RequestBody ClientDTO dto, final ServerHttpRequest req) {
     return service.save(convertToEntity(dto))
         .map(this::convertToDto)
         .map(x -> ResponseEntity.created(URI.create(req.getURI().toString().concat("/").concat(x.getId())))
@@ -58,7 +58,7 @@ public class DishController {
 
 
   @PutMapping("/{id}")
-  public Mono<ResponseEntity<DishDTO>> update(@Valid @RequestBody DishDTO dto, @PathVariable("id") String id) {
+  public Mono<ResponseEntity<ClientDTO>> update(@Valid @RequestBody ClientDTO dto, @PathVariable("id") String id) {
     return Mono.just(dto)
         .map(x -> {
           x.setId(id);
@@ -84,12 +84,12 @@ public class DishController {
         .defaultIfEmpty(ResponseEntity.notFound().build());
   }
 
-  private DishDTO convertToDto(Dish model) {
-    return mapper.map(model, DishDTO.class);
+  private ClientDTO convertToDto(Client model) {
+    return mapper.map(model, ClientDTO.class);
   }
 
-  private Dish convertToEntity(DishDTO dto) {
-    return mapper.map(dto, Dish.class);
+  private Client convertToEntity(ClientDTO dto) {
+    return mapper.map(dto, Client.class);
   }
 
 }
