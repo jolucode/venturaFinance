@@ -26,7 +26,7 @@ public class DishController {
   @GetMapping
   public Mono<ResponseEntity<Flux<DishDTO>>> findAll() {
     Flux<DishDTO> fx = service.findAll()
-        .map(e -> mapper.map(e, DishDTO.class));
+        .map(this::convertToDto);
     return Mono.just(ResponseEntity.ok()
             .contentType(MediaType.APPLICATION_JSON)
             .body(fx))
@@ -34,8 +34,9 @@ public class DishController {
   }
 
   @GetMapping("/{id}")
-  public Mono<ResponseEntity<Dish>> findById(@PathVariable("id") String id) {
+  public Mono<ResponseEntity<DishDTO>> findById(@PathVariable("id") String id) {
     return service.findById(id)
+        .map(this::convertToDto)
         .map(x -> ResponseEntity.ok()
             .contentType(MediaType.APPLICATION_JSON)
             .body(x))
@@ -43,8 +44,9 @@ public class DishController {
   }
 
   @PostMapping
-  public Mono<ResponseEntity<Dish>> save(@RequestBody Dish dish, final ServerHttpRequest req) {
-    return service.save(dish)
+  public Mono<ResponseEntity<DishDTO>> save(@RequestBody DishDTO dto, final ServerHttpRequest req) {
+    return service.save(convertToEntity(dto))
+        .map(this::convertToDto)
         .map(x -> ResponseEntity.created(URI.create(req.getURI().toString().concat("/").concat(x.getId())))
             .contentType(MediaType.APPLICATION_JSON)
             .body(x))
@@ -53,13 +55,14 @@ public class DishController {
 
 
   @PutMapping("/{id}")
-  public Mono<ResponseEntity<Dish>> update(@RequestBody Dish dish, @PathVariable("id") String id) {
-    return Mono.just(dish)
+  public Mono<ResponseEntity<DishDTO>> update(@RequestBody DishDTO dto, @PathVariable("id") String id) {
+    return Mono.just(dto)
         .map(x -> {
           x.setId(id);
           return x;
         })
-        .flatMap(x -> service.udpate(dish, id))
+        .flatMap(x -> service.udpate(convertToEntity(dto), id))
+        .map(this::convertToDto)
         .map(e -> ResponseEntity.ok()
             .body(e)
         )
@@ -77,4 +80,13 @@ public class DishController {
         })
         .defaultIfEmpty(ResponseEntity.notFound().build());
   }
+
+  private DishDTO convertToDto(Dish model) {
+    return mapper.map(model, DishDTO.class);
+  }
+
+  private Dish convertToEntity(DishDTO dto) {
+    return mapper.map(dto, Dish.class);
+  }
+
 }
