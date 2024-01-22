@@ -1,7 +1,9 @@
 package com.vsoluciones.config;
 
 import com.vsoluciones.dto.ClientDTO;
+import com.vsoluciones.dto.InvoiceDTO;
 import com.vsoluciones.model.Client;
+import com.vsoluciones.model.Invoice;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.modelmapper.convention.MatchingStrategies;
@@ -37,4 +39,23 @@ public class MapperConfig {
 
     return mapper;
   }
+
+
+  @Bean("invoiceMapper")
+  public ModelMapper invoiceMapper() {
+    ModelMapper mapper = new ModelMapper();
+    mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+
+    //lectura
+    TypeMap<Invoice, InvoiceDTO> typeMap1 = mapper.createTypeMap(Invoice.class, InvoiceDTO.class);
+    typeMap1.addMapping(e -> e.getClient().getId(), (dest, v) -> dest.getClient().setId((String) v));
+
+    //escritura
+    TypeMap<InvoiceDTO, Invoice> typeMap2= mapper.createTypeMap(InvoiceDTO.class, Invoice.class);
+    typeMap2.addMapping(e -> e.getClient().getId(), (dest, v) -> dest.getClient().setId((String) v));
+
+
+    return mapper;
+  }
+
 }
