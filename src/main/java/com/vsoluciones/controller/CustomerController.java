@@ -85,6 +85,17 @@ public class CustomerController {
         })
         .defaultIfEmpty(ResponseEntity.notFound().build());
   }
+  @PatchMapping("/{id}")
+  public Mono<ResponseEntity<Object>> updateCustomer(@PathVariable("id") String id) {
+    return service.findById(id)
+        .flatMap(customer -> {
+          customer.setStatus(!customer.isStatus());
+          return service.udpate(customer, id);
+        })
+        .map(this::convertToDto)
+        .map(customer -> ResponseEntity.noContent().build())
+        .defaultIfEmpty(ResponseEntity.notFound().build());
+  }
 
   private CustomerDTO convertToDto(Customer model) {
     return mapper.map(model, CustomerDTO.class);

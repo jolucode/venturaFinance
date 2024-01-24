@@ -1,11 +1,65 @@
+ROLES:
+//  acarranza@vsperu.com - SUPPORT
+//  jnano@vsperu.com - FINANCE
 
 
+_______________________________________________________________________________________________________________________
+//LOGIN
+
+1. Se necesita loguear con un usuario y contraseña -> POST http://<ip>:<port>/login
+
+OK -> 200
+REQUEST
+{
+    "username": "jnano@vsperu.com",
+    "password": "123"
+}
+RESPONSE
+{
+    "token": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJGSU5BTkNFIl0sInBhc3N3b3JkLWRlbW8iOiJzYW1wbGUiLCJ1c2VybmFtZSI6ImpuYW5vQHZzcGVydS5jb20iLCJzdWIiOiJqbmFub0B2c3BlcnUuY29tIiwiaWF0IjoxNzA2MDgxMjI3LCJleHAiOjE3MDYwODQwMjd9.nkQQR8tyauyEDwnJ2xD9WWoxPtN6qtPHgAmOtbMPxaWVBTPNae6U79MNIGOe3InexJlZyNZVIbwbMzhlbAnKTw",
+    "expiration": "2024-01-24T08:13:47.000+00:00"
+}
+
+ERROR 401 | 403
+
+
+_______________________________________________________________________________________________________________________
 //FINANCE
 
-1. Se necesita listar los clientes -> http://<ip>:8111/customers
-2. Habilitar/ deshabilitar un cliente -> http://<ip>:8111/customers/{id}
+1. Se necesita listar los clientes -> GET http://<ip>:<port>/customers
+2. Habilitar/ deshabilitar un cliente -> PATCH http://<ip>:<port>/customers/{id}
 3. Se necesita filtrar por ruc, businessName -> se hara la busca dinamica por el front con el filtrado de la tabla (no importa la posicion, solo que contenga el texto de la busqueda)
 
+GET OK -> 200
+[
+    {
+        "id": "65b0a587cab1fa681c9532ec",
+        "ruc": "20510910517 ",
+        "businessName": " VENTURA SOLUCIONES",
+        "phone": "(01) 2432545",
+        "email": "contacto@vsperu.com",
+        "status": false
+    },
+    {
+        "id": "65b0a659cab1fa681c9532ed",
+        "ruc": "30876543210",
+        "businessName": "INNOVATECH SERVICES",
+        "phone": "(02) 9876543",
+        "email": "info@innovatech.com",
+        "status": true
+    }
+]
+_______________________________________________________________________________________________________________________
 //SUPPORT
-1. Se necesita listar los logs -> http://<ip>:8111/logs
+1. Se necesita listar los logs -> http://<ip>:<port>/logs
 2. Se necesita filtrar por ruc, objectTypeAndDocEntry, seriesAndCorrelative -> se hara la busca dinamica por el front con el filtrado de la tabla (no importa la posicion, solo que contenga el texto de la busqueda)
+
+
+
+MONGO DB
+1. consulta de manera ordenada con query
+db.logs.find().sort({requestDate: 1})
+
+2. consulta todos los registros de tabla
+db.getCollection("logs").find({})
+
