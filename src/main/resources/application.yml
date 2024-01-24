@@ -7,5 +7,5 @@ server:
   port: 8111
 
 jjwt:
-  secret: $2a$12$J.ns6dD0ZPenk6cQeh5AhOxsYCuYr00jTs61BqZJX.MfvB8n1ETKa
+  secret: 4u7x!A%D*G-KaNdRgUkXp2s5v8y/B?E(H+MbQeShVmYq3t6w9z$C&F)J@NcRfUjW
   expiration: 2800
