@@ -1,0 +1,11 @@
+
+
+//FINANCE
+
+1. Se necesita listar los clientes -> http://<ip>:8111/customers
+2. Habilitar/ deshabilitar un cliente -> http://<ip>:8111/customers/{id}
+3. Se necesita filtrar por ruc, businessName -> se hara la busca dinamica por el front con el filtrado de la tabla (no importa la posicion, solo que contenga el texto de la busqueda)
+
+//SUPPORT
+1. Se necesita listar los logs -> http://<ip>:8111/logs
+2. Se necesita filtrar por ruc, objectTypeAndDocEntry, seriesAndCorrelative -> se hara la busca dinamica por el front con el filtrado de la tabla (no importa la posicion, solo que contenga el texto de la busqueda)

@@ -29,5 +29,7 @@ public class Log {
   private Date responseDate;
   private Date thirdPartyServiceInvocationDate;
   private Date thirdPartyServiceResponseDate;
+  private String objectTypeAndDocEntry;
+  private String seriesAndCorrelative;
 
 }
