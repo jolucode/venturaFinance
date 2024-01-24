@@ -1,8 +1,9 @@
-package com.vsoluciones.service;
+package com.vsoluciones.service.impl;
 
 import com.vsoluciones.model.Invoice;
 import com.vsoluciones.repo.IInvoiceRepo;
 import com.vsoluciones.repo.IGenericRepo;
+import com.vsoluciones.service.IInvoiceService;
 import com.vsoluciones.service.impl.CRUDImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
