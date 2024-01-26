@@ -20,6 +20,7 @@ import java.net.URI;
 @RestController
 @RequestMapping("/logs")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 public class LogController {
 
   private final ILogService service;
@@ -27,6 +28,7 @@ public class LogController {
   @Qualifier("defaultMapper")
   private final ModelMapper mapper;
 
+  @CrossOrigin(origins = "http://localhost:4200")
   @PreAuthorize("hasAuthority('SUPPORT')")
   @GetMapping
   public Mono<ResponseEntity<Flux<LogDTO>>> findAll() {
@@ -59,6 +61,7 @@ public class LogController {
   }
 
 
+  @CrossOrigin(origins = "http://localhost:4200")
   @PutMapping("/{id}")
   public Mono<ResponseEntity<LogDTO>> update(@Valid @RequestBody LogDTO dto, @PathVariable("id") String id) {
     return Mono.just(dto)

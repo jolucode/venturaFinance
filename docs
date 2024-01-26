@@ -89,3 +89,15 @@ Lima40401010
 
 becerra.j@pucp.edu.pe
 Lima40401010
+
+
+HEROKU
+heroku login
+git init
+git status
+git remote -v
+heroku git:remote -a nombre-de-tu-aplicacion
+
+git add .
+git commit -m 'message'
+git push heroku master
