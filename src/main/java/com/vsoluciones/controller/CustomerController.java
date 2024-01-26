@@ -20,6 +20,7 @@ import java.net.URI;
 @RestController
 @RequestMapping("/customers")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 public class CustomerController {
 
   private final ICustomerService service;
@@ -27,6 +28,7 @@ public class CustomerController {
   @Qualifier("defaultMapper")
   private final ModelMapper mapper;
 
+  @CrossOrigin(origins = "http://localhost:4200")
   @PreAuthorize("hasAuthority('FINANCE')")
   @GetMapping
   public Mono<ResponseEntity<Flux<CustomerDTO>>> findAll() {

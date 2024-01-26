@@ -18,10 +18,10 @@ public class Customer {
   @Id
   @EqualsAndHashCode.Include
   private String id;
+
   private String ruc;
   private String businessName;
   private String phone;
   private String email;
   private boolean status;
-
 }
