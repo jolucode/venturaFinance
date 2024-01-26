@@ -1,8 +1,12 @@
+#spring:
+# data:
+#    mongodb:
+#      uri: mongodb://localhost:27017/ventura2024
+#MONGO ATLAS
 spring:
   data:
     mongodb:
-      uri: mongodb://localhost:27017/ventura2024
-
+      uri: mongodb+srv://lbecerra:Lima40401010@cluster0.5sjmatt.mongodb.net/ventura2024
 server:
   port: 8111
 

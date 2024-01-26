@@ -63,3 +63,7 @@ db.logs.find().sort({requestDate: 1})
 2. consulta todos los registros de tabla
 db.getCollection("logs").find({})
 
+HEROKU
+lbecerra@vsperu.com
+Lima404012
+Lima4040$$12
