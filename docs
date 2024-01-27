@@ -63,24 +63,21 @@ db.logs.find().sort({requestDate: 1})
 2. consulta todos los registros de tabla
 db.getCollection("logs").find({})
 
-HEROKU
-lbecerra@vsperu.com
-Lima404012
-Lima4040$$12
+
 
 https://dashboard.heroku.com/apps/ventura-flux2024
 https://cloud.mongodb.com/v2/65b3123fd93c9a625854ee61#/clusters
-
 
 PARA COMMITS EN HEROKU
 git remote -v
 git add .
 git commit -m "commit"
-
 heroku git:remote -a ventura-flux2024
-
 git push heroku master
 
+HEROKU
+lbecerra@vsperu.com
+Lima4040$$12
 
 GITHUB VENTURA FRONT BAK
 jolucode
@@ -96,7 +93,7 @@ heroku login
 git init
 git status
 git remote -v
-heroku git:remote -a nombre-de-tu-aplicacion
+heroku git:remote -a back2
 
 git add .
 git commit -m 'message'

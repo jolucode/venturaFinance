@@ -1,4 +1,4 @@
-package com.vsoluciones;
+package com.vsoluciones.config;
 
 import java.util.List;
 

@@ -87,6 +87,9 @@ public class CustomerController {
         })
         .defaultIfEmpty(ResponseEntity.notFound().build());
   }
+
+  @CrossOrigin(origins = "http://localhost:4200")
+  @PreAuthorize("hasAuthority('FINANCE')")
   @PatchMapping("/{id}")
   public Mono<ResponseEntity<Object>> updateCustomer(@PathVariable("id") String id) {
     return service.findById(id)
