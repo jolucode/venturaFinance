@@ -98,3 +98,10 @@ heroku git:remote -a back2
 git add .
 git commit -m 'message'
 git push heroku master
+
+
+
+DESPLIEUGE ANGULAR
+https://www.youtube.com/watch?v=D2oOWgCuBIY
+
+DESPLIEUGE BACK
