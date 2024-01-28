@@ -6,7 +6,7 @@
 spring:
   data:
     mongodb:
-      uri: mongodb+srv://lbecerra:Lima40401010@cluster0.5sjmatt.mongodb.net/ventura2024
+      uri: mongodb+srv://lbecerra:Lima40401010@cluster0.g1jnjjj.mongodb.net/ventura2024
 server:
   port: 8111
 
