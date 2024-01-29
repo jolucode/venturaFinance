@@ -25,10 +25,10 @@ public class Log {
   private String response;
   private String thirdPartyRequestXml;
   private String thirdPartyResponseXml;
-  private Date requestDate;
-  private Date responseDate;
-  private Date thirdPartyServiceInvocationDate;
-  private Date thirdPartyServiceResponseDate;
+  private String requestDate;
+  private String responseDate;
+  private String thirdPartyServiceInvocationDate;
+  private String thirdPartyServiceResponseDate;
   private String objectTypeAndDocEntry;
   private String seriesAndCorrelative;
 
