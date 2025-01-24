@@ -26,7 +26,10 @@ public class DocumentsController {
     @PreAuthorize("hasAuthority('SUPPORT')")
     @GetMapping("/download")
     public Mono<ResponseEntity<Resource>> downloadFile(@RequestParam String filePath) {
+        System.out.println("File exists: " + Files.exists(Paths.get(filePath)));
+        System.out.println("File is readable: " + Files.isReadable(Paths.get(filePath)));
         return Mono.fromCallable(() -> {
+            // Reemplazar barras invertidas por barras normales
             Path path = Paths.get(filePath);
             Resource resource = new FileSystemResource(path);
 
@@ -49,6 +52,7 @@ public class DocumentsController {
         });
     }
 
+
     private String determineContentType(String fileName) {
         if (fileName.endsWith(".pdf")) {
             return MediaType.APPLICATION_PDF_VALUE;
@@ -59,7 +63,6 @@ public class DocumentsController {
         }
         return MediaType.APPLICATION_OCTET_STREAM_VALUE; // Valor por defecto para tipos desconocidos
     }
-
 
 
 }
