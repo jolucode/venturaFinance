@@ -6,9 +6,17 @@
 spring:
   data:
     mongodb:
-      uri: mongodb+srv://lbecerra:Lima40401010@cluster0.g1jnjjj.mongodb.net/ventura2024
+      uri: mongodb://localhost:27017/ventura2024
+
 server:
   port: 8084
+  ssl:
+    enabled: true
+    key-store: classpath:keystore.p12
+    key-store-password: 123456
+    key-store-type: PKCS12
+    key-alias: mysslkey
+
 
 jjwt:
   secret: 4u7x!A%D*G-KaNdRgUkXp2s5v8y/B?E(H+MbQeShVmYq3t6w9z$C&F)J@NcRfUjW

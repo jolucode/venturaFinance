@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.vsoluciones</groupId>
     <artifactId>microservice-portal</artifactId>
-    <version>2024.0.3</version>
+    <version>2024.0.5</version>
     <name>soluciones</name>
     <description>Demo project for Spring Boot</description>
     <properties>

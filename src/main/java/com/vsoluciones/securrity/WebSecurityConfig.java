@@ -41,6 +41,7 @@ public class WebSecurityConfig {
                     req.pathMatchers("/logs/**").permitAll();
                     req.pathMatchers("/api/document/**").permitAll();
                     req.pathMatchers("/v2/login").permitAll();
+                    req.pathMatchers("/logos/**").permitAll(); // <-- ESTA LÍNEA permite el acceso libre
                     //req.pathMatchers("/v2/**").authenticated()
                     req.anyExchange().authenticated();
                 })
